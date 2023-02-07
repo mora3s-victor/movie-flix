@@ -49,7 +49,5 @@ public class GenreDTO implements Serializable{
 		this.name = name;
 	}
 
-	public List<MovieDTO> getMovies() {
-		return movies;
-	}		
+		
 }
