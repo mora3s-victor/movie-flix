@@ -18,14 +18,14 @@ public class AppConfig {
 		return new BCryptPasswordEncoder();
 	}
 	
-	@Bean
+	@Bean //BEAN PARA SER INJETADO NO AuthorizationServer
 	public JwtAccessTokenConverter accessTokenConverter() {
 		JwtAccessTokenConverter tokenConverter = new JwtAccessTokenConverter();
 		tokenConverter.setSigningKey(jwtSecret);
 		return tokenConverter;
 	}
 
-	@Bean
+	@Bean //BEAN PARA SER INJETADO NO AuthorizationServer
 	public JwtTokenStore tokenStore() {
 		return new JwtTokenStore(accessTokenConverter());
 	}

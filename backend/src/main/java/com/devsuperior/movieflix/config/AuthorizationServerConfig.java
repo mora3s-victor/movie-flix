@@ -37,13 +37,13 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 	private BCryptPasswordEncoder passwordEncoder;
 	
 	@Autowired
+	private AuthenticationManager authenticationManager;
+	
+	@Autowired
 	private JwtAccessTokenConverter accessTokenConverter;
 	
 	@Autowired
 	private JwtTokenStore tokenStore;
-	
-	@Autowired
-	private AuthenticationManager authenticationManager;
 	
 	@Autowired
 	private JwtTokenEnhancer tokenEnhancer;
@@ -56,7 +56,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 		security.tokenKeyAccess("permitAll()").checkTokenAccess("isAuthenticated()");
 	}
 
-	@Override
+	@Override //METODO PARA CONFIGURAR AS CREDENCIAIS DA APLICAÇÃO
 	public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
 		clients.inMemory()
 		.withClient(clientId)
@@ -67,16 +67,16 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 		.refreshTokenValiditySeconds(jwtDuration);
 	}
 
-	@Override
+	@Override //CONFIGURA AUTENTICAÇÃO, E QUAL SERÁ O FORMATO DO TOKEN
 	public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
 		
 		TokenEnhancerChain chain = new TokenEnhancerChain();
 		chain.setTokenEnhancers(Arrays.asList(accessTokenConverter, tokenEnhancer));
 		
-		endpoints.authenticationManager(authenticationManager)
-		.tokenStore(tokenStore)
-		.accessTokenConverter(accessTokenConverter)
-		.tokenEnhancer(chain)
+		endpoints.authenticationManager(authenticationManager) //PROCESSA A AUTENTICAÇÃO
+		.tokenStore(tokenStore) //PROCESSA O TOKEN
+		.accessTokenConverter(accessTokenConverter) //TAMBÉM PROCESSA O TOKEN
+		.tokenEnhancer(chain) //ACRESCENTAR INFORMAÇÕES ADICIONAIS NO TOKEN
 		.userDetailsService(userDetailsService);
 	}
 	

@@ -25,17 +25,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	private UserDetailsService userDetailsService;
 	
 	@Override
+	//CHECKLIST SPRING SECURITY
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder);
 	}
 
 	@Override 
+	//CHECKLIST SPRING SECURITY
 	public void configure(WebSecurity web) throws Exception {
 		web.ignoring().antMatchers("/actuator/**");
 	}
 
 	@Override
-	@Bean
+	@Bean	
+	//CHECKLIST SPRING SECURITY
 	protected AuthenticationManager authenticationManager() throws Exception {
 		return super.authenticationManager();
 	}
