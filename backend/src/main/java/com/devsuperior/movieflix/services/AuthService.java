@@ -18,7 +18,6 @@ public class AuthService {
 
 	@Transactional(readOnly = true)
 	public User authenticated() {
-
 		try {
 			String username = SecurityContextHolder.getContext().getAuthentication().getName();
 			return userRepository.findByEmail(username);
@@ -27,7 +26,7 @@ public class AuthService {
 		}
 	}
 	
-	public void validateSelfOrAdmin(Long userId) {
+	public void validateSelfOrMEMBER(Long userId) {
 		User user = authenticated();
 		
 		if(!user.getId().equals(userId)&& !user.hasRole("ROLE_MEMBER")) {
