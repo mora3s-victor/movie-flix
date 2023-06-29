@@ -1,4 +1,4 @@
-package com.devsuperior.movieflix.services;
+ package com.devsuperior.movieflix.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;

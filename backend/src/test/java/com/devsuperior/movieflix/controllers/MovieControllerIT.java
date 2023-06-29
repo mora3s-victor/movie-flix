@@ -43,7 +43,7 @@ public class MovieControllerIT {
 		
 		visitorUsername = "bob@gmail.com";
 		visitorPassword = "123456";
-		memberUsername = "ana@gmail.com";
+		memberUsername = "maria@gmail.com";
 		memberPassword = "123456";
 	}
 

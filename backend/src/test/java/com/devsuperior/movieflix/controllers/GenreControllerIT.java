@@ -37,7 +37,7 @@ public class GenreControllerIT {
 		
 		visitorUsername = "bob@gmail.com";
 		visitorPassword = "123456";
-		memberUsername = "ana@gmail.com";
+		memberUsername = "maria@gmail.com";
 		memberPassword = "123456";
 	}
 
